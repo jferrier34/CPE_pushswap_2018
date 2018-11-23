@@ -29,17 +29,18 @@ void do_sort(t_intel *nb)
             && nb->fla->next != NULL) {
             rra(nb);
         }
-       else if (nb->lla->data > nb->fla->data && nb->lla->data > nb->flb->data
+        else if (nb->lla->data > nb->fla->data && nb->lla->data > nb->flb->data
             && (nb->fla->data < nb->flb->data || not_sorted(nb))) {
             pb(nb);
             swap_or_not(nb);
         }
-    else {
-      pa(nb);
-      swap_or_not(nb);
-    }
-  }
-    printf("already sort \n");
+        else if (nb->flb != nb->llb){
+            pa(nb);
+            swap_or_not(nb);
+        }
+        else
+            sb(nb);
+        }
 }
 
 int main(int ac, char **av)
@@ -54,6 +55,5 @@ int main(int ac, char **av)
         return (0);
     }
     do_sort(intel);
-    my_putchar('\n');
     return (0);
 }

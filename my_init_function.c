@@ -29,7 +29,6 @@ void set_up_list(char **av, t_intel *intel)
         tmp->next = add_new(tmp, av[i]);
         tmp = tmp->next;
     }
-//    intel->flb->data = -3000000000;
     intel->flb->data = -300000000;
     intel->flb->prev = NULL;
     intel->flb->next = NULL;
