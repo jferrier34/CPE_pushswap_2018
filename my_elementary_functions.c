@@ -35,7 +35,7 @@ void pb(t_intel *nb)
 
 void rra(t_intel *nb)
 {
-    if (!(nb->lla))
+    if (!(nb->lla) && nb->lla != nb->fla)
         return ;
     t_list *tmp = nb->lla;
     nb->lla->prev->next = NULL;
@@ -54,4 +54,15 @@ void sb(t_intel *nb)
     int save = nb->flb->data;
     nb->flb->data = nb->flb->next->data;
     nb->flb->next->data = save;
+    my_putstr("sb ");
+}
+
+void sa(t_intel *nb)
+{
+    if (nb->fla == NULL || nb->fla->next == NULL)
+        return;
+    int save = nb->fla->data;
+    nb->fla->data = nb->fla->next->data;
+    nb->fla->next->data = save;
+    my_putstr("sa ");
 }

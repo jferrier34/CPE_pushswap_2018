@@ -17,7 +17,9 @@ int not_sorted(t_intel *nb)
 
 void swap_or_not(t_intel *nb)
 {
-    if (nb->flb > nb->flb->next) {
+    if (nb->flb->data != -2147483647 &&
+        nb->flb->next->data != -2147483647 &&
+        nb->flb->data < nb->flb->next->data) {
         sb(nb);
     }
 }
@@ -29,18 +31,16 @@ void do_sort(t_intel *nb)
             && nb->fla->next != NULL) {
             rra(nb);
         }
-        else if (nb->lla->data > nb->fla->data && nb->lla->data > nb->flb->data
+        else if (nb->lla != nb->fla && nb->lla->data > nb->fla->data &&
+            nb->lla->data > nb->flb->data
             && (nb->fla->data < nb->flb->data || not_sorted(nb))) {
             pb(nb);
             swap_or_not(nb);
         }
-        else if (nb->flb != nb->llb){
+        else {
             pa(nb);
-            swap_or_not(nb);
         }
-        else
-            sb(nb);
-        }
+    }
 }
 
 int main(int ac, char **av)
