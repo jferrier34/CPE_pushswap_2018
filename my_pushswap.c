@@ -47,13 +47,19 @@ int main(int ac, char **av)
 {
     t_intel *intel = (t_intel *)malloc(sizeof(t_intel));
 
-    if (ac < 3) {
-        return (0);
+    if (ac < 2) {
+        return (84);
     }
     set_up_list(av, intel);
+
+    if (ac < 3 || !not_sorted(intel)) {
+        my_putchar('\n');
+        return (0);
+    }
     if (intel->fla == NULL) {
         return (0);
     }
     do_sort(intel);
+    write(1, "ra rra\n", 7);
     return (0);
 }
